@@ -57,3 +57,76 @@
 #include <iostream>
 using namespace std;
 
+// Function Prototypes
+void printSingleTable(int num);
+void generateTablesUpToN(int n);
+
+// -----------------------------------------------------------------------------
+// PART A — Single Table Function
+// -----------------------------------------------------------------------------
+void printSingleTable(int num) {
+    cout << "Multiplication Table for " << num << ":\n";
+    for (int i = 1; i <= 12; ++i) {
+        cout << num << "  x  " << setw(2) << left << i 
+             << " =  " << num * i << "\n";
+    }
+}
+
+// -----------------------------------------------------------------------------
+// PART B — Tables from 1 to N Function
+// -----------------------------------------------------------------------------
+void generateTablesUpToN(int n) {
+    for (int i = 1; i <= n; ++i) {
+        printSingleTable(i);
+        if (i < n) {
+            cout << "---------------------------\n";
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// MAIN PROGRAM
+// -----------------------------------------------------------------------------
+int main() {
+    int choice;
+    cout << "=== Multiplication Table Generator ===\n";
+    cout << "1. Single Table (Part A)\n";
+    cout << "2. Tables from 1 to N (Part B)\n";
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
+
+    if (choice == 1) {
+        int num;
+        cout << "\nEnter a positive integer: ";
+        cin >> num;
+
+        // Input Validation
+        if (cin.fail() || num <= 0) {
+            cout << "Error: Invalid input! Please enter a positive integer.\n";
+            return 1;
+        }
+
+        cout << endl;
+        printSingleTable(num);
+
+    } else if (choice == 2) {
+        int n;
+        cout << "\nEnter a positive integer N: ";
+        cin >> n;
+
+        // Input Validation
+        if (cin.fail() || n <= 0) {
+            cout << "Error: Invalid input! Please enter a positive integer.\n";
+            return 1;
+        }
+
+        cout << endl;
+        generateTablesUpToN(n);
+
+    } else {
+        cout << "Error: Invalid menu choice!\n";
+        return 1;
+    }
+
+    return 0;
+}
