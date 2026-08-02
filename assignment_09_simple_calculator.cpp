@@ -73,3 +73,110 @@
 #include <cmath>
 using namespace std;
 
+// Function prototypes / implementations for arithmetic operations
+double add(double a, double b) {
+    return a + b;
+}
+
+double subtract(double a, double b) {
+    return a - b;
+}
+
+double multiply(double a, double b) {
+    return a * b;
+}
+
+double divide(double a, double b) {
+    return a / b;
+}
+
+int modulus(int a, int b) {
+    return a % b;
+}
+
+double power(double base, double exp) {
+    return pow(base, exp);
+}
+
+int main() {
+    int choice;
+
+    // Configure floating-point output to 2 decimal places
+    cout << fixed << setprecision(2);
+
+    do {
+        // Display Menu
+        cout << "\n============================\n";
+        cout << "      SIMPLE CALCULATOR     \n";
+        cout << "============================\n";
+        cout << "1. Addition\n";
+        cout << "2. Subtraction\n";
+        cout << "3. Multiplication\n";
+        cout << "4. Division\n";
+        cout << "5. Modulus\n";
+        cout << "6. Exponentiation\n";
+        cout << "7. Quit\n";
+        cout << "Select an operation (1-7): ";
+        cin >> choice;
+
+        // Exit loop early if user selects 7
+        if (choice == 7) {
+            cout << "Goodbye!\n";
+            break;
+        }
+
+        // Handle invalid menu options
+        if (choice < 1 || choice > 7) {
+            cout << "Error: Invalid selection. Please choose a number between 1 and 7.\n";
+            continue;
+        }
+
+        // Handle Modulus separately (requires integers)
+        if (choice == 5) {
+            int num1, num2;
+            cout << "Enter first number : ";
+            cin >> num1;
+            cout << "Enter second number: ";
+            cin >> num2;
+
+            if (num2 == 0) {
+                cout << "Error: Cannot perform modulus by zero.\n";
+            } else {
+                cout << "Result: " << num1 << " % " << num2 << " = " << modulus(num1, num2) << "\n";
+            }
+            continue;
+        }
+
+        // Handle Floating-Point Operations (1-4, 6)
+        double num1, num2;
+        cout << "Enter first number : ";
+        cin >> num1;
+        cout << "Enter second number: ";
+        cin >> num2;
+
+        switch (choice) {
+            case 1:
+                cout << "Result: " << num1 << " + " << num2 << " = " << add(num1, num2) << "\n";
+                break;
+            case 2:
+                cout << "Result: " << num1 << " - " << num2 << " = " << subtract(num1, num2) << "\n";
+                break;
+            case 3:
+                cout << "Result: " << num1 << " * " << num2 << " = " << multiply(num1, num2) << "\n";
+                break;
+            case 4:
+                if (num2 == 0) {
+                    cout << "Error: Cannot divide by zero.\n";
+                } else {
+                    cout << "Result: " << num1 << " / " << num2 << " = " << divide(num1, num2) << "\n";
+                }
+                break;
+            case 6:
+                cout << "Result: " << num1 << " ^ " << num2 << " = " << power(num1, num2) << "\n";
+                break;
+        }
+
+    } while (choice != 7);
+
+    return 0;
+}
